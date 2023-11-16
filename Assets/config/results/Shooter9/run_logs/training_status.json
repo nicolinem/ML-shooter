@@ -1,0 +1,47 @@
+{
+    "Shooter": {
+        "checkpoints": [
+            {
+                "steps": 499963,
+                "file_path": "results/Shooter9/Shooter/Shooter-499963.onnx",
+                "reward": -1.0113333687186241,
+                "creation_time": 1699963059.9136908,
+                "auxillary_file_paths": [
+                    "results/Shooter9/Shooter/Shooter-499963.pt"
+                ]
+            },
+            {
+                "steps": 999986,
+                "file_path": "results/Shooter9/Shooter/Shooter-999986.onnx",
+                "reward": -1.024666704237461,
+                "creation_time": 1699964883.3776782,
+                "auxillary_file_paths": [
+                    "results/Shooter9/Shooter/Shooter-999986.pt"
+                ]
+            },
+            {
+                "steps": 1004038,
+                "file_path": "results/Shooter9/Shooter/Shooter-1004038.onnx",
+                "reward": -1.0380000347892444,
+                "creation_time": 1699964902.373324,
+                "auxillary_file_paths": [
+                    "results/Shooter9/Shooter/Shooter-1004038.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1004038,
+            "file_path": "results/Shooter9/Shooter.onnx",
+            "reward": -1.0380000347892444,
+            "creation_time": 1699964902.373324,
+            "auxillary_file_paths": [
+                "results/Shooter9/Shooter/Shooter-1004038.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.0.0",
+        "torch_version": "2.1.0"
+    }
+}

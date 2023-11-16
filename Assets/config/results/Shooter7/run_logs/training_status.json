@@ -1,0 +1,65 @@
+{
+    "Shooter": {
+        "checkpoints": [
+            {
+                "steps": 218296,
+                "file_path": "results/Shooter7/Shooter/Shooter-218296.onnx",
+                "reward": null,
+                "creation_time": 1699808866.2802198,
+                "auxillary_file_paths": [
+                    "results/Shooter7/Shooter/Shooter-218296.pt"
+                ]
+            },
+            {
+                "steps": 333064,
+                "file_path": "results/Shooter7/Shooter/Shooter-333064.onnx",
+                "reward": 0.1267816100333785,
+                "creation_time": 1699809439.6779451,
+                "auxillary_file_paths": [
+                    "results/Shooter7/Shooter/Shooter-333064.pt"
+                ]
+            },
+            {
+                "steps": 499992,
+                "file_path": "results/Shooter7/Shooter/Shooter-499992.onnx",
+                "reward": 0.11990588335046436,
+                "creation_time": 1699810367.9739468,
+                "auxillary_file_paths": [
+                    "results/Shooter7/Shooter/Shooter-499992.pt"
+                ]
+            },
+            {
+                "steps": 503650,
+                "file_path": "results/Shooter7/Shooter/Shooter-503650.onnx",
+                "reward": 0.1285511117980436,
+                "creation_time": 1699810446.9132621,
+                "auxillary_file_paths": [
+                    "results/Shooter7/Shooter/Shooter-503650.pt"
+                ]
+            },
+            {
+                "steps": 560557,
+                "file_path": "results/Shooter7/Shooter/Shooter-560557.onnx",
+                "reward": 0.1294333355811735,
+                "creation_time": 1699811090.111499,
+                "auxillary_file_paths": [
+                    "results/Shooter7/Shooter/Shooter-560557.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 560557,
+            "file_path": "results/Shooter7/Shooter.onnx",
+            "reward": 0.1294333355811735,
+            "creation_time": 1699811090.111499,
+            "auxillary_file_paths": [
+                "results/Shooter7/Shooter/Shooter-560557.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.0.0",
+        "torch_version": "2.1.0"
+    }
+}

@@ -1,0 +1,65 @@
+{
+    "Shooter": {
+        "checkpoints": [
+            {
+                "steps": 58566,
+                "file_path": "results/Shooter3/Shooter/Shooter-58566.onnx",
+                "reward": 0.0,
+                "creation_time": 1699795592.574228,
+                "auxillary_file_paths": [
+                    "results/Shooter3/Shooter/Shooter-58566.pt"
+                ]
+            },
+            {
+                "steps": 107795,
+                "file_path": "results/Shooter3/Shooter/Shooter-107795.onnx",
+                "reward": 0.0,
+                "creation_time": 1699796004.842153,
+                "auxillary_file_paths": [
+                    "results/Shooter3/Shooter/Shooter-107795.pt"
+                ]
+            },
+            {
+                "steps": 191286,
+                "file_path": "results/Shooter3/Shooter/Shooter-191286.onnx",
+                "reward": 0.0,
+                "creation_time": 1699796772.0573702,
+                "auxillary_file_paths": [
+                    "results/Shooter3/Shooter/Shooter-191286.pt"
+                ]
+            },
+            {
+                "steps": 193359,
+                "file_path": "results/Shooter3/Shooter/Shooter-193359.onnx",
+                "reward": null,
+                "creation_time": 1699803512.48482,
+                "auxillary_file_paths": [
+                    "results/Shooter3/Shooter/Shooter-193359.pt"
+                ]
+            },
+            {
+                "steps": 195444,
+                "file_path": "results/Shooter3/Shooter/Shooter-195444.onnx",
+                "reward": null,
+                "creation_time": 1699804548.826026,
+                "auxillary_file_paths": [
+                    "results/Shooter3/Shooter/Shooter-195444.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 195444,
+            "file_path": "results/Shooter3/Shooter.onnx",
+            "reward": null,
+            "creation_time": 1699804548.826026,
+            "auxillary_file_paths": [
+                "results/Shooter3/Shooter/Shooter-195444.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.0.0",
+        "torch_version": "2.1.0"
+    }
+}

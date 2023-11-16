@@ -1,0 +1,29 @@
+{
+    "Shooter": {
+        "checkpoints": [
+            {
+                "steps": 355552,
+                "file_path": "results/Shooter4/Shooter/Shooter-355552.onnx",
+                "reward": null,
+                "creation_time": 1699806265.9207418,
+                "auxillary_file_paths": [
+                    "results/Shooter4/Shooter/Shooter-355552.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 355552,
+            "file_path": "results/Shooter4/Shooter.onnx",
+            "reward": null,
+            "creation_time": 1699806265.9207418,
+            "auxillary_file_paths": [
+                "results/Shooter4/Shooter/Shooter-355552.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.0.0",
+        "torch_version": "2.1.0"
+    }
+}
