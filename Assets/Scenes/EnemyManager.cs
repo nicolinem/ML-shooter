@@ -40,7 +40,7 @@ public class EnemyManager : MonoBehaviour
             attempts++;
             float randomX = UnityEngine.Random.Range(platformMin.x, platformMax.x);
             float randomZ = UnityEngine.Random.Range(platformMin.y, platformMax.y);
-            randomPosition = new Vector3(randomX, 1, randomZ); // Assuming y=1 is slightly above the ground level
+            randomPosition = new Vector3(randomX, 1f, randomZ); // Assuming y=1 is slightly above the ground level
 
 
             Collider[] colliders = Physics.OverlapSphere(randomPosition, 0.5f); // 0.5f is the radius of the check, adjust as needed for your game
@@ -48,6 +48,8 @@ public class EnemyManager : MonoBehaviour
             if (colliders.Length == 0)
             {
                 positionFound = true;
+
+                randomPosition = new Vector3(randomX, 0.1f, randomZ);
             }
         }
 

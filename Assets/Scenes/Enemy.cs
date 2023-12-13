@@ -19,7 +19,7 @@ public class Enemy : Agent
     private SimpleMultiAgentGroup agentGroup;
 
     public Transform ShootingPoint;
-    public int minStepsBetweenShots = 50;
+    public int minStepsBetweenShots = 300;
     public int damage = 25;
 
     public int startingHealth = 100;
@@ -34,7 +34,9 @@ public class Enemy : Agent
     private int StepsUntilShotIsAvaliable = 0;
 
     private Vector3 StartingPosition;
-    private Rigidbody RB;
+    public Rigidbody RB;
+
+    public Animator anim;
 
 
 
@@ -42,14 +44,20 @@ public class Enemy : Agent
     {
         enemyManager = manager;
         agentGroup = group;
-        StartingPosition = transform.position;
-        RB = GetComponent<Rigidbody>();
+        StartingPosition = new Vector3(transform.position.x, 0.0001f, transform.position.z);
+
+
+
+
         currentHealth = startingHealth;
         defaultParams = Academy.Instance.EnvironmentParameters;
 
         // Register this enemy instance with the group
-        agentGroup.RegisterAgent(this);
+
         enemyManager.RegisterEnemy(this);
+
+        RB = GetComponent<Rigidbody>();
+        anim = GetComponent<Animator>();
     }
 
 
@@ -115,7 +123,7 @@ public class Enemy : Agent
             }
         }
 
-        AddReward(-1f / MaxStep);
+        enemyManager.RewardGroup(-1f / MaxStep);
 
     }
     public override void OnActionReceived(ActionBuffers actionBuffers)
@@ -124,6 +132,12 @@ public class Enemy : Agent
         if (Mathf.RoundToInt(actionBuffers.DiscreteActions[0]) >= 1)
         {
             Shoot();
+            anim.SetBool("Shooting", true);
+
+        }
+        else
+        {
+            anim.SetBool("Shooting", false);
         }
 
         // Handle Movement
@@ -131,21 +145,39 @@ public class Enemy : Agent
         float moveZ = actionBuffers.ContinuousActions[1]; // Vertical movement
         float rotateY = actionBuffers.ContinuousActions[2]; // Rotation
 
+
+        anim.SetFloat("Forward", moveX);
+
+
+
+
+
         RB.velocity = new Vector3(moveX * speed, 0f, moveZ * speed);
         transform.Rotate(Vector3.up, rotateY * rotationSpeed);
-        Collider[] hitColliders = Physics.OverlapBox(gameObject.transform.position, transform.localScale / 2);
-        if (hitColliders.Length > 0)
-        {
-            if (hitColliders[0].tag == "Wall")
-            {
-                AddReward(-0.04f);
-            }
+        // Collider[] hitColliders = Physics.OverlapBox(gameObject.transform.position, transform.localScale / 2);
+        // if (hitColliders.Length > 0)
+        // {
+        //     Debug.Log(hitColliders[0].tag);
+        //     Debug.Log(hitColliders[0].name);
+        //     Debug.Log("hitColliders[0]");
+        //     if (hitColliders[0].tag == "Wall")
+        //     {
+        //         Debug.Log("Wall");
+        //         enemyManager.RewardGroup(-0.4f);
+        //     }
 
-        }
+        // }
     }
 
 
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform.tag == "Wall")
+        {
 
+            enemyManager.RewardGroup(-0.4f);
+        }
+    }
 
 
 
@@ -157,9 +189,10 @@ public class Enemy : Agent
         discreteActionsOut[0] = Input.GetKey(KeyCode.P) ? 1 : 0;
 
         // Mapping WASD keys to movement
+        continuousActionsOut[0] = Input.GetAxis("Horizontal");
+        continuousActionsOut[1] = Input.GetAxis("Vertical");
         continuousActionsOut[0] = Input.GetKey(KeyCode.A) ? -1f : Input.GetKey(KeyCode.D) ? 1f : 0f; // Horizontal
-        continuousActionsOut[1] = Input.GetKey(KeyCode.S) ? -1f : Input.GetKey(KeyCode.W) ? 1f : 0f; // Vertical
-        continuousActionsOut[2] = Input.GetKey(KeyCode.Q) ? -1f : Input.GetKey(KeyCode.E) ? 1f : 0f; // Rotation
+
     }
 
 
@@ -181,13 +214,21 @@ public class Enemy : Agent
 
     public void GetShot(int damage)
     {
+
+
         currentHealth -= damage;
         enemyManager.RewardGroup(-0.3f);
+        Debug.Log(currentHealth);
 
         if (currentHealth <= 0)
         {
             Die();
         }
+    }
+
+    public void PlayerHit()
+    {
+        enemyManager.RewardGroup(0.5f);
     }
 
 

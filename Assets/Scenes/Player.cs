@@ -15,10 +15,10 @@ public class Player : MonoBehaviour
 
 
     public Transform shootingPoint;
-    public int maxShotsBeforeCooldown = 3;
-    public float minTimeBetweenShots = 2f;
-    public float maxTimeBetweenShots = 5f;
-    public float cooldownTime = 2f;
+    public int maxShotsBeforeCooldown = 5;
+    public float minTimeBetweenShots = 7;
+    public float maxTimeBetweenShots = 3;
+    public float cooldownTime = 1f;
     public int damage = 50;
 
     private int CurrentHealth;
@@ -82,11 +82,18 @@ public class Player : MonoBehaviour
         }
 
         // Shooting logic
+
+
+
         if (visibleClosestEnemy != null && !isCooldown)
         {
+
             shotTimer -= Time.fixedDeltaTime;
+
+            // Debug.Log(shotTimer);
             if (shotTimer <= 0)
             {
+                Debug.Log("SHOOTING");
                 Shoot(); // Shoot only if there is a visible enemy
                 if (shotsFired >= maxShotsBeforeCooldown)
                 {
@@ -130,12 +137,14 @@ public class Player : MonoBehaviour
     private void AimAtEnemy(Enemy enemy)
     {
         Vector3 directionToEnemy = (enemy.transform.position - transform.position).normalized;
+        directionToEnemy.y = 0; // This ensures there is no tilt on the x-axis
         transform.forward = directionToEnemy; // Rotate player to face the enemy
     }
 
     private void ResetShotTimer()
     {
-        shotTimer = Random.Range(minTimeBetweenShots, maxTimeBetweenShots);
+        shotTimer = Random.Range(1, 6);
+        Debug.Log(shotTimer);
     }
 
     private void Shoot()
@@ -176,9 +185,9 @@ public class Player : MonoBehaviour
     private void ApplyDamage(int damage, Enemy shooter)
     {
         CurrentHealth -= damage;
-        Debug.Log(CurrentHealth);
 
-        shooter.AddReward(0.4f);
+
+        shooter.PlayerHit();
 
         if (CurrentHealth <= 0)
         {
@@ -198,7 +207,8 @@ public class Player : MonoBehaviour
     public void Respawn()
     {
         CurrentHealth = startingHealth;
-        transform.position = enemyManager.GetRandomPosition();
+        var randomPosition = enemyManager.GetRandomPosition();
+        transform.position = new Vector3(randomPosition.x, 1f, randomPosition.z);
 
     }
 }
