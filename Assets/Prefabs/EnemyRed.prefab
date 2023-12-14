@@ -243,6 +243,8 @@ MonoBehaviour:
   startingHealth: 90
   platformMin: {x: -10, y: -10}
   platformMax: {x: 10, y: 10}
+  RB: {fileID: 0}
+  anim: {fileID: 0}
 --- !u!114 &6143293351859305936
 MonoBehaviour:
   m_ObjectHideFlags: 0
