@@ -154,19 +154,7 @@ public class Enemy : Agent
 
         RB.velocity = new Vector3(moveX * speed, 0f, moveZ * speed);
         transform.Rotate(Vector3.up, rotateY * rotationSpeed);
-        // Collider[] hitColliders = Physics.OverlapBox(gameObject.transform.position, transform.localScale / 2);
-        // if (hitColliders.Length > 0)
-        // {
-        //     Debug.Log(hitColliders[0].tag);
-        //     Debug.Log(hitColliders[0].name);
-        //     Debug.Log("hitColliders[0]");
-        //     if (hitColliders[0].tag == "Wall")
-        //     {
-        //         Debug.Log("Wall");
-        //         enemyManager.RewardGroup(-0.4f);
-        //     }
 
-        // }
     }
 
 
@@ -214,11 +202,8 @@ public class Enemy : Agent
 
     public void GetShot(int damage)
     {
-
-
         currentHealth -= damage;
         enemyManager.RewardGroup(-0.3f);
-        Debug.Log(currentHealth);
 
         if (currentHealth <= 0)
         {
@@ -235,7 +220,7 @@ public class Enemy : Agent
     private void Die()
     {
         enemyManager.RewardGroup(-1f);
-        gameObject.SetActive(false); // Optionally deactivate the enemy
+        gameObject.SetActive(false); 
         enemyManager.UnregisterEnemy(this); // Notify the EnemyManager
 
     }

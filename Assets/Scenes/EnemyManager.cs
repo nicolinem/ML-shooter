@@ -4,62 +4,39 @@ using Unity.MLAgents;
 
 public class EnemyManager : MonoBehaviour
 {
-    public GameObject enemyPrefab; // Assign this in the editor
-    public int numberOfEnemies = 3; // Set the number of enemies you want to spawn
+    public GameObject enemyPrefab;
+    public int numberOfEnemies = 3;
     private List<Enemy> enemies = new List<Enemy>();
     private SimpleMultiAgentGroup m_AgentGroup;
 
     private int remainingEnemies;
 
-    public Vector2 platformMin = new Vector2(-10f, -10f); // Minimum X and Z coordinates
-    public Vector2 platformMax = new Vector2(10f, 10f);   // Maximum X and Z coordinates
+    public List<SpawnZone> spawnZones;
+
 
     void Start()
     {
         remainingEnemies = numberOfEnemies;
         m_AgentGroup = new SimpleMultiAgentGroup();
+
         for (int i = 0; i < numberOfEnemies; i++)
         {
-            // Instantiate and initialize enemies here
             var enemyGO = Instantiate(enemyPrefab, GetRandomPosition(), Quaternion.identity);
             var enemy = enemyGO.GetComponent<Enemy>();
             enemy.InitializeEnemy(this, m_AgentGroup);
-
         }
     }
 
     public Vector3 GetRandomPosition()
     {
-        Vector3 randomPosition = Vector3.zero;
-        bool positionFound = false;
-        int maxAttempts = 100;
-        int attempts = 0;
-
-        while (!positionFound && attempts < maxAttempts)
+        if (spawnZones.Count == 0)
         {
-            attempts++;
-            float randomX = UnityEngine.Random.Range(platformMin.x, platformMax.x);
-            float randomZ = UnityEngine.Random.Range(platformMin.y, platformMax.y);
-            randomPosition = new Vector3(randomX, 1f, randomZ); // Assuming y=1 is slightly above the ground level
-
-
-            Collider[] colliders = Physics.OverlapSphere(randomPosition, 0.5f); // 0.5f is the radius of the check, adjust as needed for your game
-
-            if (colliders.Length == 0)
-            {
-                positionFound = true;
-
-                randomPosition = new Vector3(randomX, 0.1f, randomZ);
-            }
-        }
-
-        if (!positionFound)
-        {
-            Debug.LogError("Failed to find a free position for enemy spawn after " + maxAttempts + " attempts.");
+            Debug.LogError("No spawn zones assigned!");
             return Vector3.zero;
         }
 
-        return randomPosition;
+        SpawnZone selectedSpawnZone = spawnZones[Random.Range(0, spawnZones.Count)];
+        return selectedSpawnZone.SpawnPoint;
     }
 
 
@@ -78,7 +55,7 @@ public class EnemyManager : MonoBehaviour
         List<Enemy> activeEnemies = new List<Enemy>();
         foreach (var enemy in enemies)
         {
-            if (enemy.gameObject.activeSelf) // Check if the enemy GameObject is active
+            if (enemy.gameObject.activeSelf)
             {
                 activeEnemies.Add(enemy);
             }
@@ -117,10 +94,7 @@ public class EnemyManager : MonoBehaviour
 
         }
 
-        // Reset the scene, positions of enemies, etc.
     }
-
-
 
 
     public void UnregisterEnemy(Enemy enemy)

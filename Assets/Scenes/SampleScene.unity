@@ -295,6 +295,8 @@ MonoBehaviour:
   startingHealth: 100
   platformMin: {x: -10, y: -10}
   platformMax: {x: 10, y: 10}
+  RB: {fileID: 0}
+  anim: {fileID: 0}
 --- !u!65 &106072617
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1214,7 +1216,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 950953241}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -2.5951567}
+  m_LocalPosition: {x: 0, y: 0, z: -1.32}
   m_LocalScale: {x: 0.47573, y: 1.6725, z: 3.0765204}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2066,7 +2068,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7546418758901590925, guid: e425b6b3322d48d419c63eea24d5a2cc, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
