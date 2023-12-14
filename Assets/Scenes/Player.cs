@@ -66,7 +66,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        // Continue with your existing logic for movement
+
         if (visibleClosestEnemy != null && !isCooldown)
         {
             currentTarget = visibleClosestEnemy;
@@ -81,8 +81,6 @@ public class Player : MonoBehaviour
             }
         }
 
-        // Shooting logic
-
 
 
         if (visibleClosestEnemy != null && !isCooldown)
@@ -90,11 +88,11 @@ public class Player : MonoBehaviour
 
             shotTimer -= Time.fixedDeltaTime;
 
-            // Debug.Log(shotTimer);
+
             if (shotTimer <= 0)
             {
-                Debug.Log("SHOOTING");
-                Shoot(); // Shoot only if there is a visible enemy
+
+                Shoot();
                 if (shotsFired >= maxShotsBeforeCooldown)
                 {
                     isCooldown = true;
@@ -128,7 +126,6 @@ public class Player : MonoBehaviour
         Vector3 directionToEnemy = (enemy.transform.position - transform.position).normalized;
         if (Physics.Raycast(transform.position, directionToEnemy, out RaycastHit hit, 200f, layerMask))
         {
-            // Check if the raycast hit the enemy and not a wall
             return hit.collider.gameObject == enemy.gameObject;
         }
         return false;
@@ -137,14 +134,14 @@ public class Player : MonoBehaviour
     private void AimAtEnemy(Enemy enemy)
     {
         Vector3 directionToEnemy = (enemy.transform.position - transform.position).normalized;
-        directionToEnemy.y = 0; // This ensures there is no tilt on the x-axis
-        transform.forward = directionToEnemy; // Rotate player to face the enemy
+        directionToEnemy.y = 0;
+        transform.forward = directionToEnemy;
     }
 
     private void ResetShotTimer()
     {
         shotTimer = Random.Range(1, 6);
-        Debug.Log(shotTimer);
+
     }
 
     private void Shoot()
