@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     public float cooldownTime = 1f;
     public int damage = 50;
 
-    private int CurrentHealth;
+    public int CurrentHealth;
     private int shotsFired;
     private float shotTimer;
     private float cooldownTimer;
@@ -182,7 +182,7 @@ public class Player : MonoBehaviour
     private void ApplyDamage(int damage, Enemy shooter)
     {
         CurrentHealth -= damage;
-
+        
 
         shooter.PlayerHit();
 
