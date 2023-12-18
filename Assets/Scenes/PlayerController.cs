@@ -21,12 +21,18 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        MouseAiming();
+        if (!PauseMenu.GameIsPaused)
+        {
+            MouseAiming();
+        }
     }
 
     void FixedUpdate()
     {
-        KeyboardMovement();
+        if (!PauseMenu.GameIsPaused)
+        {
+            KeyboardMovement();
+        }
     }
 
     void MouseAiming()
