@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerItems : MonoBehaviour
 {
+    public delegate void KeyCollectedAction();
+    public static event KeyCollectedAction OnKeyCollected;
+
     private int keysCollected = 0;
     private PlayerShooter playerShooter;
 
@@ -12,23 +15,19 @@ public class PlayerItems : MonoBehaviour
         playerShooter = GetComponent<PlayerShooter>();
     }
 
-
-
     private void OnTriggerEnter(Collider other)
     {
-
         if (other.gameObject.CompareTag("Key"))
         {
-
             keysCollected++;
-
-            //Possible to tell the key manager that the key has been picked up, or the game manager
             other.gameObject.SetActive(false);
-        }
 
+            // Trigger the event when a key is collected
+            OnKeyCollected?.Invoke();
+        }
         else if (other.gameObject.CompareTag("Ammo"))
         {
-            int ammoCount = 10; // Can change to make different ammoamounts
+            int ammoCount = 10; // Can change to make different ammo amounts
             playerShooter.AddAmmo(ammoCount);
             other.gameObject.SetActive(false); // Deactivate the ammo item
         }
