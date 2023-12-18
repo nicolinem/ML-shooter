@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Modular Dungeon.unity
     guid: 27915ac565aadf048b89a94d619c501d
+  - enabled: 1
+    path: Assets/Scenes/FinishMenu.unity
+    guid: 7a81952b33b144b05b0a1dd6f2e23d51
   m_configObjects: {}

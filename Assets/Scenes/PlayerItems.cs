@@ -9,6 +9,8 @@ public class PlayerItems : MonoBehaviour
 
     private int keysCollected = 0;
     private PlayerShooter playerShooter;
+    public GameObject wallToDelete;
+    private int totalKeysRequired = 3;
 
     private void Start()
     {
@@ -24,12 +26,30 @@ public class PlayerItems : MonoBehaviour
 
             // Trigger the event when a key is collected
             OnKeyCollected?.Invoke();
+
+            // Check if the player has found all keys
+            if (keysCollected >= totalKeysRequired)
+            {
+                DeleteWall();
+            }
         }
         else if (other.gameObject.CompareTag("Ammo"))
         {
             int ammoCount = 10; // Can change to make different ammo amounts
             playerShooter.AddAmmo(ammoCount);
             other.gameObject.SetActive(false); // Deactivate the ammo item
+        }
+    }
+
+    private void DeleteWall()
+    {
+        if (wallToDelete != null)
+        {
+            Destroy(wallToDelete);
+        }
+        else
+        {
+            Debug.LogWarning("Wall reference is null. Make sure to assign the wall GameObject in the Inspector.");
         }
     }
 }
