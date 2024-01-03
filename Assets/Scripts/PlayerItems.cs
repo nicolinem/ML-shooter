@@ -11,6 +11,11 @@ public class PlayerItems : MonoBehaviour
     private PlayerShooter playerShooter;
     public GameObject wallToDelete;
     private int totalKeysRequired = 3;
+    private AudioManager audioManager;
+
+    private void Awake(){
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
     private void Start()
     {
@@ -19,6 +24,7 @@ public class PlayerItems : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        audioManager.PlaySFX(audioManager.pickup);
         if (other.gameObject.CompareTag("Key"))
         {
             keysCollected++;
