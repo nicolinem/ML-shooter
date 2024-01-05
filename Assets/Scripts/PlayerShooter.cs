@@ -16,7 +16,11 @@ public class PlayerShooter : MonoBehaviour
     private float cooldownTimer;
     private bool isCooldown;
 
+    private AudioManager audioManager;
 
+    private void Awake(){
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
     private void Start()
     {
@@ -58,6 +62,7 @@ public class PlayerShooter : MonoBehaviour
 
     private void Shoot()
     {
+        audioManager.PlaySFX(audioManager.shooting);
         shotsFired++;
         currentAmmo--;
 
