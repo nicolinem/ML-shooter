@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpawnZone : MonoBehaviour
 {
-   
+
 
     public Vector3 startPosition;
 
@@ -50,7 +50,7 @@ public class SpawnZone : MonoBehaviour
     private Vector3 GetRandomPosition()
     {
 
-        Vector2 position = Random.insideUnitCircle * 6f;
+        Vector2 position = Random.insideUnitCircle * 4f;
         var randomPosition = new Vector3(startPosition.x + position.x, 0, startPosition.z + position.y);
 
         return randomPosition;
