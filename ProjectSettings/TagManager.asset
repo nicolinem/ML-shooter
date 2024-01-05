@@ -9,6 +9,7 @@ TagManager:
   - Obstacle Wall
   - Key
   - Ammo
+  - Audio
   layers:
   - Default
   - TransparentFX

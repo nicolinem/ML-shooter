@@ -18,7 +18,11 @@ public class PlayerShooter : MonoBehaviour
 
     public Projectile projectile;
 
+    private AudioManager audioManager;
 
+    private void Awake(){
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
     private void Start()
     {
@@ -60,6 +64,7 @@ public class PlayerShooter : MonoBehaviour
 
     private void Shoot()
     {
+        audioManager.PlaySFX(audioManager.shooting);
         shotsFired++;
         currentAmmo--;
 
