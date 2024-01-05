@@ -12,7 +12,6 @@ public class SpawnZone : MonoBehaviour
     {
         get
         {
-
             Vector3 randomPosition = GetRandomPosition();
 
             bool positionFound = false;
@@ -23,10 +22,10 @@ public class SpawnZone : MonoBehaviour
             {
                 attempts++;
                 Vector3 spawn = GetRandomPosition();
-                randomPosition = new Vector3(spawn.x, 1f, spawn.z); // Assuming y=1 is slightly above the ground level
+                randomPosition = new Vector3(spawn.x, 1f, spawn.z);
 
 
-                Collider[] colliders = Physics.OverlapSphere(randomPosition, 0.5f); // 0.5f is the radius of the check, adjust as needed for your game
+                Collider[] colliders = Physics.OverlapSphere(randomPosition, 0.5f);
 
                 if (colliders.Length == 0)
                 {

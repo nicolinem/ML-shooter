@@ -34,12 +34,20 @@ public class UpgradesSpawnManager : MonoBehaviour
         }
 
         SpawnZone selectedSpawnZone = spawnZones[Random.Range(0, spawnZones.Count)];
-        Vector3 spawnPoint = selectedSpawnZone.SpawnPoint;
+
+        float staticYPosition = 0.5f;
+
+        Vector3 spawnPoint = new Vector3(
+            selectedSpawnZone.SpawnPoint.x,
+            staticYPosition,
+            selectedSpawnZone.SpawnPoint.z
+        );
 
         UpgradePrefab selectedUpgradePrefab = ChooseRandomUpgradePrefab();
         GameObject upgradeGO = Instantiate(selectedUpgradePrefab.prefab, spawnPoint, Quaternion.identity);
         spawnedUpgrades.Add(upgradeGO);
     }
+
 
     private UpgradePrefab ChooseRandomUpgradePrefab()
     {

@@ -27,12 +27,18 @@ public class DungeonKeyManager : MonoBehaviour
         }
 
         SpawnZone selectedSpawnZone = spawnZones[Random.Range(0, spawnZones.Count)];
-        Vector3 spawnPoint = selectedSpawnZone.SpawnPoint;
+
+        float staticYPosition = 0.5f;
+
+        Vector3 spawnPoint = new Vector3(
+            selectedSpawnZone.SpawnPoint.x,
+            staticYPosition,
+            selectedSpawnZone.SpawnPoint.z
+        );
 
         var keyGO = Instantiate(keyPrefab, spawnPoint, Quaternion.identity);
         var dungeonKey = keyGO.GetComponent<DungeonKey>();
         keys.Add(dungeonKey);
     }
 
-    // Add any additional methods you need for the DungeonKeyManager here
 }
