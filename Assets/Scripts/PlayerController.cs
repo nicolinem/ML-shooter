@@ -5,6 +5,14 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public Camera playerCamera;
+
+    public PointsManager pointsManager;
+
+    public int startingHealth = 100;
+
+    public int CurrentHealth;
+
+
     public float turnSpeed = 4.0f;
     public float moveSpeed = 2.0f;
     public float minTurnAngle = -90.0f;
@@ -12,11 +20,15 @@ public class PlayerController : MonoBehaviour
     private float rotX;
     private Rigidbody playerRb;
 
+
+
     void Start()
     {
         playerRb = GetComponent<Rigidbody>();
         // Prevent Rigidbody from rotating
         playerRb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+        CurrentHealth = startingHealth;
+        pointsManager.UpdateHealthUI(CurrentHealth);
     }
 
     void Update()
@@ -58,4 +70,32 @@ public class PlayerController : MonoBehaviour
         // Move using Rigidbody
         playerRb.MovePosition(playerRb.position + direction * moveSpeed * Time.fixedDeltaTime);
     }
+
+
+    public void GetShot(int damage, Enemy shooter)
+    {
+
+        ApplyDamage(damage, shooter);
+    }
+
+    private void ApplyDamage(int damage, Enemy shooter)
+    {
+        CurrentHealth -= damage;
+
+
+        shooter.PlayerHit();
+
+        if (CurrentHealth <= 0)
+        {
+            Die(shooter);
+        }
+    }
+
+    private void Die(Enemy shooter)
+    {
+        // Respawn();
+        shooter.RegisterKill();
+
+    }
+
 }

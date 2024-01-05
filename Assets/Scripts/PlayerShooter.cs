@@ -16,6 +16,8 @@ public class PlayerShooter : MonoBehaviour
     private float cooldownTimer;
     private bool isCooldown;
 
+    public Projectile projectile;
+
 
 
     private void Start()
@@ -64,10 +66,24 @@ public class PlayerShooter : MonoBehaviour
         // Implement shooting logic here
         var layerMask = 1 << LayerMask.NameToLayer("Player");
         var direction = playerCamera.transform.forward;
+        Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
 
-        Debug.DrawRay(shootingPoint.position, direction * 100f, Color.green, 2f);
 
-        if (Physics.Raycast(shootingPoint.position, direction, out var hit, 200f, layerMask))
+        //check if ray hits something
+        Vector3 targetPoint;
+        if (Physics.Raycast(ray, out RaycastHit hitt))
+            targetPoint = hitt.point;
+        else
+            targetPoint = ray.GetPoint(75); //Just a point far away from the player
+
+        Vector3 directionWithoutSpread = targetPoint - shootingPoint.position;
+
+        var spawnedProjectile = Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0f, -90f, 0f));
+        spawnedProjectile.SetDirection(directionWithoutSpread);
+
+        Debug.DrawRay(shootingPoint.position, directionWithoutSpread * 100f, Color.green, 2f);
+
+        if (Physics.Raycast(shootingPoint.position, directionWithoutSpread, out var hit, 200f, layerMask))
         {
             Enemy hitEnemy = hit.transform.GetComponent<Enemy>();
             if (hitEnemy != null)

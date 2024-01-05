@@ -15,32 +15,31 @@ public class PointsManager : MonoBehaviour
     int maxKey = 3;
     int shots = 10;
 
-    public Player player;
+
 
     void Start()
     {
-        player = FindObjectOfType<Player>();
-
-        if (player != null)
-        {
-            healthScore.text = player.CurrentHealth.ToString();
-        }
 
         keysScore.text = keys.ToString() + "/" + maxKey.ToString();
         shotsScore.text = shots.ToString();
 
         PlayerItems.OnKeyCollected += UpdateKeysUI;
+
     }
 
     void Update()
     {
-        if (player != null)
-        {
-            healthScore.text = player.CurrentHealth.ToString();
-        }
+
     }
 
     // Update the keys UI when a key is collected
+
+    public void UpdateHealthUI(int currentHealth)
+    {
+        healthScore.text = currentHealth.ToString();
+    }
+
+
     void UpdateKeysUI()
     {
         keys++;
