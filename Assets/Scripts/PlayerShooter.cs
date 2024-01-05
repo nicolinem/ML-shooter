@@ -20,7 +20,8 @@ public class PlayerShooter : MonoBehaviour
 
     private AudioManager audioManager;
 
-    private void Awake(){
+    private void Awake()
+    {
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
@@ -86,7 +87,7 @@ public class PlayerShooter : MonoBehaviour
         var spawnedProjectile = Instantiate(projectile, shootingPoint.position, Quaternion.Euler(0f, -90f, 0f));
         spawnedProjectile.SetDirection(directionWithoutSpread);
 
-        Debug.DrawRay(shootingPoint.position, directionWithoutSpread * 100f, Color.green, 2f);
+        Debug.DrawRay(shootingPoint.position, directionWithoutSpread, Color.green, 2f);
 
         if (Physics.Raycast(shootingPoint.position, directionWithoutSpread, out var hit, 200f, layerMask))
         {
