@@ -6,9 +6,12 @@ public class AudioManager : MonoBehaviour
 {
     [SerializeField] AudioSource SFXSource;
 
+    public AudioClip key;
+    public AudioClip ammo;
+    public AudioClip unlock;
     public AudioClip finish;
-    public AudioClip pickup;
     public AudioClip shooting;
+    public AudioClip click;
 
     public void PlaySFX(AudioClip audioClip){
         SFXSource.PlayOneShot(audioClip);
