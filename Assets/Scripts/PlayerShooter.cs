@@ -89,18 +89,18 @@ public class PlayerShooter : MonoBehaviour
 
         Debug.DrawRay(shootingPoint.position, directionWithoutSpread, Color.green, 2f);
 
-        if (Physics.Raycast(shootingPoint.position, directionWithoutSpread, out var hit, 200f, layerMask))
-        {
-            Enemy hitEnemy = hit.transform.GetComponent<Enemy>();
-            if (hitEnemy != null)
-            {
-                hitEnemy.GetShot(damage);
-            }
-        }
-        else
-        {
-            // Log miss or handle it
-        }
+        // if (Physics.Raycast(shootingPoint.position, directionWithoutSpread, out var hit, 200f, layerMask))
+        // {
+        //     Enemy hitEnemy = hit.transform.GetComponent<Enemy>();
+        //     if (hitEnemy != null)
+        //     {
+        //         hitEnemy.GetShot(damage);
+        //     }
+        // }
+        // else
+        // {
+        //     // Log miss or handle it
+        // }
 
         // Start cooldown if max shots reached
         if (shotsFired >= maxShotsBeforeCooldown)

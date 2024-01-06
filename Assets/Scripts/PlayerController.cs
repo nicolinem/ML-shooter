@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.Examples;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -74,6 +75,7 @@ public class PlayerController : MonoBehaviour
 
     public void GetShot(int damage, Enemy shooter)
     {
+        Debug.Log("Getshorn");
 
         ApplyDamage(damage, shooter);
     }
@@ -81,6 +83,8 @@ public class PlayerController : MonoBehaviour
     private void ApplyDamage(int damage, Enemy shooter)
     {
         CurrentHealth -= damage;
+
+        pointsManager.UpdateHealthUI(CurrentHealth);
 
 
         shooter.PlayerHit();
