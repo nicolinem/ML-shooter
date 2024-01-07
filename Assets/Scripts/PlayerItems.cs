@@ -24,7 +24,6 @@ public class PlayerItems : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        audioManager.PlaySFX(audioManager.pickup);
         if (other.gameObject.CompareTag("Key"))
         {
             keysCollected++;
@@ -36,11 +35,15 @@ public class PlayerItems : MonoBehaviour
             // Check if the player has found all keys
             if (keysCollected >= totalKeysRequired)
             {
+                audioManager.PlaySFX(audioManager.unlock);
                 DeleteWall();
+            } else {
+                audioManager.PlaySFX(audioManager.key);
             }
         }
         else if (other.gameObject.CompareTag("Ammo"))
         {
+            audioManager.PlaySFX(audioManager.ammo);
             int ammoCount = 10; // Can change to make different ammo amounts
             playerShooter.AddAmmo(ammoCount);
             other.gameObject.SetActive(false); // Deactivate the ammo item
