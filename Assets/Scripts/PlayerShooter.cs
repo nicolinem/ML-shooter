@@ -5,11 +5,15 @@ using UnityEngine;
 public class PlayerShooter : MonoBehaviour
 {
     public Transform shootingPoint;
+
+    public PointsManager pointsManager;
     public Camera playerCamera;
     public int maxShotsBeforeCooldown = 5;
     public float cooldownTime = 1f;
     public int damage = 50;
     public int maxAmmo = 20; // Maximum ammo the player can hold
+
+    public int startAmmo = 5;
 
     private int shotsFired;
     private int currentAmmo;
@@ -27,7 +31,8 @@ public class PlayerShooter : MonoBehaviour
 
     private void Start()
     {
-        currentAmmo = maxAmmo; // Initialize ammo
+        currentAmmo = startAmmo; // Initialize ammo
+        pointsManager.UpdateAmmunitionUI(startAmmo);
     }
 
     private void Update()
@@ -66,6 +71,7 @@ public class PlayerShooter : MonoBehaviour
     private void Shoot()
     {
         audioManager.PlaySFX(audioManager.shooting);
+        pointsManager.UpdateAmmunitionUI(currentAmmo);
         shotsFired++;
         currentAmmo--;
 
@@ -112,5 +118,6 @@ public class PlayerShooter : MonoBehaviour
     public void AddAmmo(int ammoCount)
     {
         currentAmmo = Mathf.Min(currentAmmo + ammoCount, maxAmmo);
+        pointsManager.UpdateAmmunitionUI(currentAmmo);
     }
 }

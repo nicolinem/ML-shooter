@@ -85,7 +85,7 @@ public class Enemy : Agent
         var layerMask = 1 << LayerMask.NameToLayer("Player");
         var direction = transform.forward;
 
-        Debug.Log("shooting");
+
         var newProjectile = Instantiate(enemyProjectile, ShootingPoint.position, Quaternion.Euler(0f, -90f, 0f));
         newProjectile.SetDirection(direction, this);
 

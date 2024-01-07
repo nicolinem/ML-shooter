@@ -45,4 +45,9 @@ public class PointsManager : MonoBehaviour
         keys++;
         keysScore.text = keys.ToString() + "/" + maxKey.ToString();
     }
+
+    public void UpdateAmmunitionUI(int ammoAmount)
+    {
+        shotsScore.text = ammoAmount.ToString();
+    }
 }
