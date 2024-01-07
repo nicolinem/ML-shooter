@@ -13,7 +13,8 @@ public class PlayerItems : MonoBehaviour
     private int totalKeysRequired = 3;
     private AudioManager audioManager;
 
-    private void Awake(){
+    private void Awake()
+    {
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
@@ -37,14 +38,16 @@ public class PlayerItems : MonoBehaviour
             {
                 audioManager.PlaySFX(audioManager.unlock);
                 DeleteWall();
-            } else {
+            }
+            else
+            {
                 audioManager.PlaySFX(audioManager.key);
             }
         }
         else if (other.gameObject.CompareTag("Ammo"))
         {
             audioManager.PlaySFX(audioManager.ammo);
-            int ammoCount = 10; // Can change to make different ammo amounts
+            int ammoCount = 4; // Can change to make different ammo amounts
             playerShooter.AddAmmo(ammoCount);
             other.gameObject.SetActive(false); // Deactivate the ammo item
         }

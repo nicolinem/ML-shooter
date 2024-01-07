@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.MLAgents;
+using TMPro.Examples;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -19,9 +20,12 @@ public class EnemyManager : MonoBehaviour
         remainingEnemies = numberOfEnemies;
         m_AgentGroup = new SimpleMultiAgentGroup();
 
+
         for (int i = 0; i < numberOfEnemies; i++)
         {
-            var enemyGO = Instantiate(enemyPrefab, GetRandomPosition(), Quaternion.identity);
+            Vector3 position = GetRandomPosition();
+            Vector3 newPosition = new Vector3(position.x, 0.5f, position.z);
+            var enemyGO = Instantiate(enemyPrefab, newPosition, Quaternion.identity);
             var enemy = enemyGO.GetComponent<Enemy>();
             enemy.InitializeEnemy(this, m_AgentGroup);
         }
@@ -36,6 +40,7 @@ public class EnemyManager : MonoBehaviour
         }
 
         SpawnZone selectedSpawnZone = spawnZones[Random.Range(0, spawnZones.Count)];
+
         return selectedSpawnZone.SpawnPoint;
     }
 

@@ -6,14 +6,19 @@ using Unity.MLAgents;
 using Unity.MLAgents.Sensors;
 using Unity.MLAgents.Actuators;
 using UnityEngine;
+using TMPro.Examples;
 
 
 public class Enemy : Agent
 {
 
 
+
+    public EnemyProjectile enemyProjectile;
     public float speed = 3f;
     public float rotationSpeed = 3f;
+
+    private static readonly int AttackState = Animator.StringToHash("Base Layer.attack_shift");
 
     public EnemyManager enemyManager;
     private SimpleMultiAgentGroup agentGroup;
@@ -36,7 +41,7 @@ public class Enemy : Agent
     private Vector3 StartingPosition;
     public Rigidbody RB;
 
-    public Animator anim;
+    public Animator Anim;
 
 
 
@@ -57,7 +62,7 @@ public class Enemy : Agent
         enemyManager.RegisterEnemy(this);
 
         RB = GetComponent<Rigidbody>();
-        anim = GetComponent<Animator>();
+        Anim = GetComponent<Animator>();
     }
 
 
@@ -80,20 +85,24 @@ public class Enemy : Agent
         var layerMask = 1 << LayerMask.NameToLayer("Player");
         var direction = transform.forward;
 
+
+        var newProjectile = Instantiate(enemyProjectile, ShootingPoint.position, Quaternion.Euler(0f, -90f, 0f));
+        newProjectile.SetDirection(direction, this);
+
         Debug.DrawRay(ShootingPoint.position, direction * 60f, Color.blue, 1f);
 
-        if (Physics.Raycast(ShootingPoint.position, direction, out var hit, 200f, layerMask))
-        {
-            Player player = hit.transform.GetComponent<Player>();
-            player?.GetShot(damage, this);
+        // if (Physics.Raycast(ShootingPoint.position, direction, out var hit, 200f, layerMask))
+        // {
+        //     PlayerController player = hit.transform.GetComponent<PlayerController>();
+        //     player?.GetShot(damage, this);
 
-        }
+        // }
 
-        else
-        {
+        // else
+        // {
 
-            enemyManager.RewardGroup(-0.1f);
-        }
+        //     enemyManager.RewardGroup(-0.1f);
+        // }
 
         ShotAvaliable = false;
         StepsUntilShotIsAvaliable = minStepsBetweenShots;
@@ -132,12 +141,12 @@ public class Enemy : Agent
         if (Mathf.RoundToInt(actionBuffers.DiscreteActions[0]) >= 1)
         {
             Shoot();
-            anim.SetBool("Shooting", true);
+            Anim.CrossFade(AttackState, 0.1f, 0, 0);
 
         }
         else
         {
-            anim.SetBool("Shooting", false);
+
         }
 
         // Handle Movement
@@ -146,7 +155,6 @@ public class Enemy : Agent
         float rotateY = actionBuffers.ContinuousActions[2]; // Rotation
 
 
-        anim.SetFloat("Forward", moveX);
 
 
 
@@ -187,6 +195,7 @@ public class Enemy : Agent
 
     public void RegisterKill()
     {
+
         enemyManager.RewardGroup(1.0f);
         enemyManager.EndEpisode();
     }
@@ -220,7 +229,7 @@ public class Enemy : Agent
     private void Die()
     {
         enemyManager.RewardGroup(-1f);
-        gameObject.SetActive(false); 
+        gameObject.SetActive(false);
         enemyManager.UnregisterEnemy(this); // Notify the EnemyManager
 
     }
