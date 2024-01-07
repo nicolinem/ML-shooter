@@ -9,9 +9,12 @@ public class AudioManager : MonoBehaviour
     public AudioClip key;
     public AudioClip ammo;
     public AudioClip unlock;
-    public AudioClip finish;
     public AudioClip shooting;
     public AudioClip click;
+
+    public AudioClip hurted;
+    public AudioClip enemyShooting;
+    
 
     public void PlaySFX(AudioClip audioClip){
         SFXSource.PlayOneShot(audioClip);

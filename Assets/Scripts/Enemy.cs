@@ -42,8 +42,12 @@ public class Enemy : Agent
     public Rigidbody RB;
 
     public Animator Anim;
+    private AudioManager audioManager;
 
-
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
     public void InitializeEnemy(EnemyManager manager, SimpleMultiAgentGroup group)
     {
@@ -80,7 +84,7 @@ public class Enemy : Agent
         }
 
 
-
+        audioManager.PlaySFX(audioManager.enemyShooting);
 
         var layerMask = 1 << LayerMask.NameToLayer("Player");
         var direction = transform.forward;

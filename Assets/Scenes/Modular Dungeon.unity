@@ -18598,6 +18598,8 @@ MonoBehaviour:
   finish: {fileID: 8300000, guid: 2667a0a008b044e218b63df62e2be749, type: 3}
   shooting: {fileID: 8300000, guid: 4310474905e266640852f43bd609a1a4, type: 3}
   click: {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
+  hurted: {fileID: 8300000, guid: 0bdea80c6d0384fce9c1008ec42c0df9, type: 3}
+  enemyShooting: {fileID: 8300000, guid: b1c3b3fc0b19d47fd8bcc8762b17fe34, type: 3}
 --- !u!4 &984941131
 Transform:
   m_ObjectHideFlags: 0

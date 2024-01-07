@@ -21,8 +21,14 @@ public class PlayerController : MonoBehaviour
     public float maxTurnAngle = 90.0f;
     private float rotX;
     private Rigidbody playerRb;
+    private AudioManager audioManager;
 
 
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
     void Start()
     {
@@ -77,6 +83,7 @@ public class PlayerController : MonoBehaviour
     public void GetShot(int damage, Enemy shooter)
     {
         Debug.Log("Getshorn");
+        audioManager.PlaySFX(audioManager.hurted);
 
         ApplyDamage(damage, shooter);
     }
