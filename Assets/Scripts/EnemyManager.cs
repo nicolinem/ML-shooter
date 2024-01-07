@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.MLAgents;
-using TMPro.Examples;
+
 
 public class EnemyManager : MonoBehaviour
 {
