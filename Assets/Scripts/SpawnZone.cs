@@ -51,7 +51,7 @@ public class SpawnZone : MonoBehaviour
     {
 
         Vector2 position = Random.insideUnitCircle * 5f;
-        Debug.Log(startPosition);
+
         var randomPosition = new Vector3(startPosition.x + position.x, 0.1f, startPosition.z + position.y);
 
         return randomPosition;

@@ -14,9 +14,12 @@ public class AudioManager : MonoBehaviour
 
     public AudioClip hurted;
     public AudioClip enemyShooting;
-    
 
-    public void PlaySFX(AudioClip audioClip){
+    public AudioClip ghostDying;
+
+
+    public void PlaySFX(AudioClip audioClip)
+    {
         SFXSource.PlayOneShot(audioClip);
     }
 }

@@ -18324,6 +18324,7 @@ MonoBehaviour:
   click: {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
   hurted: {fileID: 8300000, guid: 0bdea80c6d0384fce9c1008ec42c0df9, type: 3}
   enemyShooting: {fileID: 8300000, guid: b1c3b3fc0b19d47fd8bcc8762b17fe34, type: 3}
+  ghostDying: {fileID: 8300000, guid: 84e427d6b66ab4066b6a4dcd0ce819ee, type: 3}
 --- !u!4 &984941131
 Transform:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ public class Enemy : Agent
 {
 
 
+    public GameObject player;
 
     public EnemyProjectile enemyProjectile;
     public float speed = 3f;
@@ -44,9 +45,13 @@ public class Enemy : Agent
     public Animator Anim;
     private AudioManager audioManager;
 
+    public float maxAudioRange = 10f;
+
     private void Awake()
     {
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        player = GameObject.FindGameObjectWithTag("Player");
+
     }
 
     public void InitializeEnemy(EnemyManager manager, SimpleMultiAgentGroup group)
@@ -84,7 +89,10 @@ public class Enemy : Agent
         }
 
 
-        audioManager.PlaySFX(audioManager.enemyShooting);
+        if (player != null && Vector3.Distance(transform.position, player.transform.position) <= maxAudioRange)
+        {
+            audioManager.PlaySFX(audioManager.enemyShooting);
+        }
 
         var layerMask = 1 << LayerMask.NameToLayer("Player");
         var direction = transform.forward;
@@ -217,6 +225,7 @@ public class Enemy : Agent
     {
         currentHealth -= damage;
         enemyManager.RewardGroup(-0.3f);
+        audioManager.PlaySFX(audioManager.ghostDying);
 
         if (currentHealth <= 0)
         {
@@ -233,6 +242,7 @@ public class Enemy : Agent
     private void Die()
     {
         enemyManager.RewardGroup(-1f);
+
         gameObject.SetActive(false);
         enemyManager.UnregisterEnemy(this); // Notify the EnemyManager
 

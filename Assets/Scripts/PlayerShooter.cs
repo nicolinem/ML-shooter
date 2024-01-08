@@ -71,9 +71,10 @@ public class PlayerShooter : MonoBehaviour
     private void Shoot()
     {
         audioManager.PlaySFX(audioManager.shooting);
-        pointsManager.UpdateAmmunitionUI(currentAmmo);
+
         shotsFired++;
         currentAmmo--;
+        pointsManager.UpdateAmmunitionUI(currentAmmo);
 
         // Implement shooting logic here
         var layerMask = 1 << LayerMask.NameToLayer("Player");

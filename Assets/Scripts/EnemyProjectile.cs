@@ -8,6 +8,8 @@ public class EnemyProjectile : MonoBehaviour
 {
     private Rigidbody Rigidbody;
     private Vector3 Direction;
+
+    private bool hasCollided = false;
     public int damage = 25;
 
     private Enemy Enemy;
@@ -33,16 +35,16 @@ public class EnemyProjectile : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        // Check if the projectile hits the player
+        if (hasCollided) return; // Exit if already collided
+
         if (collision.gameObject.CompareTag("Player"))
         {
-            PlayerController player = collision.gameObject.GetComponent<PlayerController>();
-            if (player != null)
-            {
-                player.GetShot(damage, Enemy);
-            }
+            hasCollided = true; // Set flag to true on first collision
 
+            PlayerController player = collision.gameObject.GetComponent<PlayerController>();
+            player?.GetShot(damage, Enemy);
         }
+
         SelfDestruct();
     }
 }

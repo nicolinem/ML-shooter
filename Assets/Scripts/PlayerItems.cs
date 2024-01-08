@@ -47,7 +47,7 @@ public class PlayerItems : MonoBehaviour
         else if (other.gameObject.CompareTag("Ammo"))
         {
             audioManager.PlaySFX(audioManager.ammo);
-            int ammoCount = 4; // Can change to make different ammo amounts
+            int ammoCount = 5; // Can change to make different ammo amounts
             playerShooter.AddAmmo(ammoCount);
             other.gameObject.SetActive(false); // Deactivate the ammo item
         }

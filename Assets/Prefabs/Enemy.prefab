@@ -389,6 +389,7 @@ MonoBehaviour:
   enemyProjectile: {fileID: -4101440324625481149, guid: 22328d392dc0348cb96b9f1a874a9400, type: 3}
   speed: 3
   rotationSpeed: 3
+  meshRenderer: {fileID: 839705036205447455}
   enemyManager: {fileID: 0}
   ShootingPoint: {fileID: 45174600550474077}
   minStepsBetweenShots: 50
@@ -521,5 +522,10 @@ BoxCollider:
 --- !u!4 &796652407307068396 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 46f311046d2104da8b56be3d0a49a119, type: 3}
+  m_PrefabInstance: {fileID: 902125486744929287}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &839705036205447455 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 514471462265150744, guid: 46f311046d2104da8b56be3d0a49a119, type: 3}
   m_PrefabInstance: {fileID: 902125486744929287}
   m_PrefabAsset: {fileID: 0}
