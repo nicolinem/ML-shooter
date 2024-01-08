@@ -452,8 +452,8 @@ MonoBehaviour:
   m_ObservationStacks: 1
   rayHitColor: {r: 1, g: 0, b: 0, a: 1}
   rayMissColor: {r: 1, g: 1, b: 1, a: 1}
-  m_StartVerticalOffset: 1
-  m_EndVerticalOffset: 0
+  m_StartVerticalOffset: 0.6
+  m_EndVerticalOffset: 0.6
 --- !u!114 &6241491410343253048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -481,8 +481,8 @@ MonoBehaviour:
   m_ObservationStacks: 1
   rayHitColor: {r: 1, g: 0, b: 0, a: 1}
   rayMissColor: {r: 1, g: 1, b: 1, a: 1}
-  m_StartVerticalOffset: 1
-  m_EndVerticalOffset: 0
+  m_StartVerticalOffset: 0.6
+  m_EndVerticalOffset: 0.6
 --- !u!114 &-1746249000819669090
 MonoBehaviour:
   m_ObjectHideFlags: 0
